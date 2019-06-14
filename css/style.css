@@ -1,5 +1,16 @@
-.card-border {
-    border: 1px solid black;
+.card {
+    /* border: 1px solid black; */
     height: 200px;
     /* background-color: blue; */
+}
+
+.card img {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+}
+
+.flipped .back {
+
+    display: none;
 }
