@@ -5,8 +5,8 @@ class Board {
     }
     createBordCards(column) {
         let cardsObj = new Cards();
-        let arrayCards = cardsObj.cards.arrayImg;
-        console.log(arrayCards);
+        console.log(cardsObj);
+        let arrayCards = cardsObj.cardMix;
         let newArray = [];
         while (arrayCards.length)
             newArray.push(arrayCards.splice(0, column));
