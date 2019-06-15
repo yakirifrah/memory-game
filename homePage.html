@@ -23,12 +23,12 @@
         </div>
         <div class="row justify-content-center mt-3">
             <div class="col-md-8 text-center">
-                <form method="GET" action="game.html">
+                <form id="submit" method="GET" action="./game.html">
                     <input type="text" name="user" id="user" class="form-control mt-3"
                         placeholder="Enter your user name" required />
                     <input type="email" name="email" id="email" class="form-control mt-3" placeholder="Enter your email"
                         required />
-                    <button type="submit" class="btn btn-primary mt-5">LOGIN</button>
+                    <button id="button" type="submit" class="btn btn-primary mt-5">LOGIN</button>
                 </form>
             </div>
         </div>
@@ -44,6 +44,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+    <script src="./src/data/localStorage.js"></script>
+    <script src="./js/homePage.js"></script>
 </body>
 
 </html>
