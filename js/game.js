@@ -8,7 +8,6 @@ class Game {
         this.elPreviousCard = null;
         this.flippedCouplesCount = 0;
         this.isProcessing = false;
-
     }
     cardClicked(CurrentCard) {
         if (CurrentCard.classList.contains('flipped')) {
@@ -26,9 +25,7 @@ class Game {
         else {
             let Firstcard = this.elPreviousCard.getAttribute('data-img');
             this.isMatchCards(Firstcard, CurrentCard);
-
         }
-
     }
     isMatchCards(Firstcard, CurrentCard) {
         let Secondcard = CurrentCard.getAttribute('data-img');
