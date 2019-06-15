@@ -1,8 +1,17 @@
 
 let game = new Game();
 let cells = game.bord.cells;
+let objLocal = JSON.parse(localStorage.getItem("globalStorage"));
+let lenObjLocal = objLocal.length - 1;
 //cretae a board DOM
 $(document).ready(initDynmaicApp);
+//stopWatch clock
+let h1 = document.getElementsByTagName('h2')[0],
+    start = document.getElementById('start'),
+    stop = document.getElementById('stop'),
+    clear = document.getElementById('clear'),
+    seconds = 0, minutes = 0, hours = 0,
+    t;
 function initDynmaicApp() {
     victoryMessage();
     let conatainer = $('.container');
@@ -26,12 +35,14 @@ function initDynmaicApp() {
             $(conatainer).append(row);
         }
     }
+    timer();
     $(".card").click((e) => {
-        victoryMessage();
         let card = e.currentTarget;
         let backFlipped = card.children[0];
         $(backFlipped).addClass('flipped');
         game.cardClicked(card);
+        victoryMessage();
+
     })
 }
 $(".new-game").click(function (e) {
@@ -45,16 +56,18 @@ $(".new-game").click(function (e) {
         console.log(containerChildren[i]);
         $(containerChildren[i]).empty();
     }
+    h1.textContent = "00:00:00";
+    seconds = 0; minutes = 0; hours = 0;
     initDynmaicApp();
 });
 
-
-
 function victoryMessage() {
     if (game.victory === false) {
-        document.querySelector('.sccore').innerHTML = `SCORE: ${game.flippedCouplesCount} \\ ${TOTAL_COUPLES_CARDS}`;
+        document.querySelector('.sccore').innerHTML = `SCORE: ${game.numOfGuesses}`;
     }
     else {
+        clearTimeout(t);
+        // console.log("victory");
         let conatainer = $('.container');
         let lenChildren = conatainer[0].children.length;
         let containerChildren = conatainer[0].children;
@@ -62,12 +75,28 @@ function victoryMessage() {
             console.log(containerChildren[i]);
             $(containerChildren[i]).empty();
         }
-
-        let messageVictory = $(`<div class="animated bounce"> </div>`)
+        let strTime = h1.textContent;
+        let messageVictory = $('<div class="animated bounce won text-center"></div>');
+        $(conatainer).append(messageVictory);
+        document.querySelector('.won').innerHTML = `${objLocal[lenObjLocal].user} your time ${strTime}`;
 
     }
-
 }
-
+function add() {
+    seconds++;
+    if (seconds >= 60) {
+        seconds = 0;
+        minutes++;
+        if (minutes >= 60) {
+            minutes = 0;
+            hours++;
+        }
+    }
+    h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+    timer();
+}
+function timer() {
+    t = setTimeout(add, 1000);
+}
 
 

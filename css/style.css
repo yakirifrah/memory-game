@@ -50,6 +50,11 @@ body {
 .sccore {
     font-family: 'Teko', sans-serif;
     font-size: 32px;
+}
 
+.won {
+    font-family: 'Noto Sans HK', sans-serif;
+    font-size: 70px;
+    color: #e67e22;
 
 }
