@@ -1,11 +1,9 @@
 class Board {
     constructor(column) {
         this.cells = this.createBordCards(column);
-
     }
     createBordCards(column) {
         let cardsObj = new Cards();
-        console.log(cardsObj);
         let arrayCards = cardsObj.cardMix;
         let newArray = [];
         while (arrayCards.length)

@@ -1,5 +1,4 @@
 
-
 class Cards {
     constructor() {
         this.cardMix = this.CardShuffling(IMG_NAME);

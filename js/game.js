@@ -8,6 +8,7 @@ class Game {
         this.elPreviousCard = null;
         this.flippedCouplesCount = 0;
         this.isProcessing = false;
+        this.victory = false;
     }
     cardClicked(CurrentCard) {
         if (CurrentCard.classList.contains('flipped')) {
@@ -33,10 +34,8 @@ class Game {
             this.flippedCouplesCount++;
             this.isVicotry(this.flippedCouplesCount, TOTAL_COUPLES_CARDS);
             this.elPreviousCard = null;
-            console.log('Right');
         }
         else {
-            console.log('Wrong');
             this.isProcessing = true;
             setTimeout(() => {
                 if (this.elPreviousCard) {
@@ -51,12 +50,8 @@ class Game {
     }
     isVicotry(flippedCouplesCount, TOTAL_COUPLES_CARDS) {
         if (flippedCouplesCount === TOTAL_COUPLES_CARDS) {
-            console.log('victory');
+            this.victory = true;
         }
-
-
     }
-
-
 }
 
