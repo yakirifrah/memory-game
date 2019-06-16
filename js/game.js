@@ -5,11 +5,12 @@ const TOTAL_COUPLES_CARDS = 6;
 class Game {
     constructor() {
         this.bord = new Board(COLUMN);
+        // console.log(this.bord);
         this.elPreviousCard = null;
         this.flippedCouplesCount = 0;
         this.isProcessing = false;
         this.victory = false;
-        this.numOfGuesses = 6;
+        this.numOfGuesses = 0;
     }
     cardClicked(CurrentCard) {
         if (CurrentCard.classList.contains('flipped')) {
@@ -32,7 +33,6 @@ class Game {
     isMatchCards(Firstcard, CurrentCard) {
         let Secondcard = CurrentCard.getAttribute('data-img');
         if (Firstcard === Secondcard) {
-            this.numOfGuesses--;
             this.flippedCouplesCount++;
             this.isVicotry(this.flippedCouplesCount, TOTAL_COUPLES_CARDS);
             this.elPreviousCard = null;

@@ -2,7 +2,6 @@
 let game = new Game();
 let cells = game.bord.cells;
 let objLocal = JSON.parse(localStorage.getItem("globalStorage"));
-console.log(objLocal)
 let lenObjLocal = objLocal.length - 1;
 //cretae a board DOM
 $(document).ready(initDynmaicApp);
@@ -47,6 +46,7 @@ function initDynmaicApp() {
     })
 }
 $(".new-game").click(function (e) {
+    clearTimeout(t);
     let newGame = new Game();
     game = newGame;
     cells = game.bord.cells;
