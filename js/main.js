@@ -2,6 +2,7 @@
 let game = new Game();
 let cells = game.bord.cells;
 let objLocal = JSON.parse(localStorage.getItem("globalStorage"));
+console.log(objLocal)
 let lenObjLocal = objLocal.length - 1;
 //cretae a board DOM
 $(document).ready(initDynmaicApp);
@@ -63,7 +64,7 @@ $(".new-game").click(function (e) {
 
 function victoryMessage() {
     if (game.victory === false) {
-        document.querySelector('.sccore').innerHTML = `SCORE: ${game.numOfGuesses}`;
+        document.querySelector('.sccore').innerHTML = `NUM Of GUESSES: ${game.numOfGuesses}`;
     }
     else {
         clearTimeout(t);
@@ -78,8 +79,11 @@ function victoryMessage() {
         let strTime = h1.textContent;
         let messageVictory = $('<div class="animated bounce won text-center"></div>');
         $(conatainer).append(messageVictory);
-        document.querySelector('.won').innerHTML = `${objLocal[lenObjLocal].user} your time ${strTime}`;
-
+        document.querySelector('.won').innerHTML = `${objLocal[lenObjLocal].user} your time ${strTime} and number of guess ${game.numOfGuesses}`;
+        objLocal[lenObjLocal].score = game.numOfGuesses;
+        objLocal[lenObjLocal].time = strTime;
+        window.localStorage.setItem("globalStorage", JSON.stringify(objLocal));
+        tableScore();
     }
 }
 function add() {
@@ -99,4 +103,48 @@ function timer() {
     t = setTimeout(add, 1000);
 }
 
+// //TO DO
+function tableScore() {
+    let conatainer = $('.container');
+    let objUpdateWithScore = JSON.parse(localStorage.getItem("globalStorage"));
+    let continerTable = $(`<div class="table-responsive"></div>`);
+    let table = $(`<table class="table"></table>`);
+    let thead = $(`<thead>
+                        <tr>
+                            <th scope="col">name</th>
+                            <th scope="col">score</th>
+                            <th scope="col">time</th>
+                        </tr>
+                </thead>`);
+    let tbody = $(`<tbody></tbody>`);
+    for (let i = 0; i < lenObjLocal + 1; i++) {
+        let tr = $('<tr></tr>');
+        tbody.append(tr);
+        for (let prop in objUpdateWithScore[i]) {
+            if (prop === `user`) {
+                let userName = `${objUpdateWithScore[i]['user']}`;
+                let td = $(`<td class="td"></td>`);
+                td.html(`${userName}`);
+                tr.append(td);
+            }
+            else if (prop === 'score') {
+                let strScore = `${objUpdateWithScore[i]['score']}`;
+                let td = $(`<td class="td"></td>`);
+                td.html(`${strScore}`);
+                tr.append(td);
 
+            }
+            else if (prop === `time`) {
+                let time = `${objUpdateWithScore[i]['time']}`;
+                let td = $(`<td class="td"></td>`);
+                td.html(`${time}`);
+                tr.append(td);
+
+            }
+        }
+    }
+    continerTable.append(table);
+    table.append(thead);
+    table.append(tbody);
+    conatainer.append(continerTable);
+}

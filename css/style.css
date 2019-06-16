@@ -54,7 +54,15 @@ body {
 
 .won {
     font-family: 'Noto Sans HK', sans-serif;
-    font-size: 70px;
+    font-size: 30px;
     color: #e67e22;
+}
 
+.td {
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.table {
+    background-color: rgba(236, 240, 241, 0.8);
 }

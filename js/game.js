@@ -9,7 +9,7 @@ class Game {
         this.flippedCouplesCount = 0;
         this.isProcessing = false;
         this.victory = false;
-        this.numOfGuesses = 0;
+        this.numOfGuesses = 6;
     }
     cardClicked(CurrentCard) {
         if (CurrentCard.classList.contains('flipped')) {
@@ -32,15 +32,13 @@ class Game {
     isMatchCards(Firstcard, CurrentCard) {
         let Secondcard = CurrentCard.getAttribute('data-img');
         if (Firstcard === Secondcard) {
-            this.numOfGuesses++;
+            this.numOfGuesses--;
             this.flippedCouplesCount++;
             this.isVicotry(this.flippedCouplesCount, TOTAL_COUPLES_CARDS);
             this.elPreviousCard = null;
         }
         else {
-            if (this.numOfGuesses > 0) {
-                this.numOfGuesses--;
-            }
+            this.numOfGuesses++;
             this.isProcessing = true;
             setTimeout(() => {
                 if (this.elPreviousCard) {
