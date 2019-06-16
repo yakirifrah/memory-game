@@ -53,7 +53,7 @@ $(".new-game").click(function (e) {
     let conatainer = $('.container');
     let lenChildren = conatainer[0].children.length;
     let containerChildren = conatainer[0].children;
-    for (let i = 2; i < lenChildren; i++) {
+    for (let i = 3; i < lenChildren; i++) {
         console.log(containerChildren[i]);
         $(containerChildren[i]).empty();
     }
@@ -72,7 +72,7 @@ function victoryMessage() {
         let conatainer = $('.container');
         let lenChildren = conatainer[0].children.length;
         let containerChildren = conatainer[0].children;
-        for (let i = 2; i < lenChildren; i++) {
+        for (let i = 3; i < lenChildren; i++) {
             console.log(containerChildren[i]);
             $(containerChildren[i]).empty();
         }
